@@ -1,0 +1,322 @@
+═══════════════════════════════════════════════════════════
+   RAGAMAGURU APPOINTMENT SYSTEM - COMPLETE SETUP GUIDE
+═══════════════════════════════════════════════════════════
+
+📁 FILE LIST (All Files You Need):
+═══════════════════════════════════════════════════════════
+
+DATABASE:
+  └─ database.sql                  (Database structure)
+
+CONFIGURATION:
+  └─ config.php                    (Main configuration file)
+
+AUTHENTICATION:
+  ├─ login.php                     (Admin login)
+  ├─ logout.php                    (Logout)
+  └─ header.php                    (Navigation menu)
+
+DASHBOARD:
+  └─ dashboard.php                 (Main dashboard)
+
+CUSTOMERS:
+  ├─ customers.php                 (List customers)
+  ├─ customer_add.php              (Add customer)
+  ├─ customer_view.php             (View customer & history)
+  ├─ customer_edit.php             (Edit customer)
+  └─ customer_delete.php           (Delete customer)
+
+SERVICES:
+  └─ services.php                  (Manage services - Add/Edit/Delete all in one)
+
+APPOINTMENTS:
+  ├─ appointments.php              (List/Calendar view)
+  ├─ appointment_add.php           (Book appointment)
+  ├─ appointment_view.php          (View & add treatment details)
+  ├─ appointment_edit.php          (Edit appointment)
+  └─ appointment_delete.php        (Delete appointment)
+
+INVOICES:
+  ├─ invoices.php                  (List invoices)
+  ├─ invoice_create.php            (Create invoice)
+  ├─ invoice_view.php              (View & print invoice)
+  ├─ invoice_edit.php              (Edit invoice)
+  └─ invoice_delete.php            (Delete invoice)
+
+REPORTS:
+  └─ reports.php                   (All reports - daily, revenue, statistics)
+
+API/HELPERS:
+  └─ api_customer_history.php      (AJAX endpoint for customer data)
+
+STYLES:
+  └─ style.css                     (All CSS styling)
+
+DOCUMENTATION:
+  ├─ README.txt                    (Basic readme)
+  └─ SETUP_GUIDE.txt              (This file)
+
+
+🚀 INSTALLATION STEPS:
+═══════════════════════════════════════════════════════════
+
+STEP 1: DATABASE SETUP
+----------------------
+1. Open phpMyAdmin (or your MySQL client)
+2. Click "New" to create a database
+3. Name it: ragamaguru_appointments
+4. Click on the database name
+5. Go to "Import" tab
+6. Choose file: database.sql
+7. Click "Go" to import
+8. ✓ Default admin will be created automatically
+   Username: admin
+   Password: admin123
+
+STEP 2: CONFIGURE THE SYSTEM
+----------------------------
+1. Open config.php in a text editor
+2. Update these settings:
+
+   DATABASE SETTINGS:
+   ------------------
+   define('DB_HOST', 'localhost');        // Usually 'localhost'
+   define('DB_USER', 'root');             // Your MySQL username
+   define('DB_PASS', '');                 // Your MySQL password
+   define('DB_NAME', 'ragamaguru_appointments');
+
+   SMS API SETTINGS:
+   -----------------
+   define('SMS_API_KEY', 'YOUR_API_TOKEN_HERE');  // Get from Richmo
+   define('SMS_FROM_MASK', 'Ragamaguru');         // Your sender name
+
+3. Save the file
+
+STEP 3: UPLOAD FILES
+--------------------
+1. Upload ALL PHP files to your web server
+2. Upload style.css
+3. Ensure proper file permissions (644 for files, 755 for folders)
+
+STEP 4: FIRST LOGIN
+-------------------
+1. Open your browser
+2. Go to: http://yourwebsite.com/login.php
+3. Login with:
+   Username: admin
+   Password: admin123
+4. ⚠️ IMPORTANT: Change password immediately!
+
+STEP 5: ADD YOUR FIRST SERVICE
+-------------------------------
+1. Click "Services" in menu
+2. Click "+ Add Service"
+3. Fill in:
+   - Service Name (e.g., "Hair Treatment")
+   - Description
+   - Duration in minutes (e.g., 60)
+   - Price in Rs. (e.g., 2500.00)
+4. Click "Save"
+
+STEP 6: ADD YOUR FIRST CUSTOMER
+--------------------------------
+1. Click "Customers" in menu
+2. Click "+ Add Customer"
+3. Fill in customer details:
+   - Full Name *
+   - Mobile Number * (format: 947xxxxxxxx)
+   - Date of Birth
+   - Address
+4. Check "Send Verification SMS" if you want to send SMS
+5. Click "Add Customer"
+
+
+📱 SMS INTEGRATION SETUP:
+═══════════════════════════════════════════════════════════
+
+RICHMO API SETUP:
+-----------------
+1. Visit: https://portal.richmo.lk
+2. Sign up / Login to your account
+3. Get your API Token
+4. Get your Sender Mask approval
+
+UPDATE config.php:
+------------------
+define('SMS_API_KEY', 'your-actual-token-here');
+define('SMS_FROM_MASK', 'YourApprovedMask');
+
+SMS FEATURES:
+-------------
+✓ Customer mobile verification
+✓ Appointment confirmations
+✓ Custom messages
+
+MOBILE NUMBER FORMAT:
+---------------------
+Always use: 947XXXXXXXX (Sri Lankan format)
+Example: 947712345678
+
+
+🎯 FEATURES OVERVIEW:
+═══════════════════════════════════════════════════════════
+
+✓ CUSTOMER MANAGEMENT:
+  - Add/Edit/Delete customers
+  - Search by mobile number or name
+  - Mobile verification via SMS
+  - Store: Name, Mobile, DOB, Address
+  - View complete customer history
+
+✓ SERVICE MANAGEMENT:
+  - Add/Edit/Delete services
+  - Set service duration and price
+  - Activate/Deactivate services
+  - All in one page
+
+✓ APPOINTMENT SYSTEM:
+  - Book appointments
+  - Calendar view
+  - Daily schedule
+  - Add treatment details
+  - Update status (Pending/Confirmed/Completed/Cancelled)
+  - SMS confirmations
+
+✓ TREATMENT TRACKING:
+  - Record treatment details per appointment
+  - Track products used
+  - Therapist notes
+  - View past treatments
+
+✓ INVOICING:
+  - Create invoices
+  - Multiple services per invoice
+  - Track payments (Paid/Partial/Unpaid)
+  - Print invoices
+  - Edit/Delete invoices
+
+✓ REPORTS:
+  - Daily schedule reports
+  - Revenue reports
+  - Service performance
+  - Customer statistics
+  - Date range filtering
+  - Print reports
+
+
+🔧 TROUBLESHOOTING:
+═══════════════════════════════════════════════════════════
+
+PROBLEM: Cannot login
+SOLUTION: 
+- Check database connection in config.php
+- Verify database was imported correctly
+- Default credentials: admin/admin123
+
+PROBLEM: SMS not sending
+SOLUTION:
+- Verify API token in config.php
+- Check mobile number format (947XXXXXXXX)
+- Ensure cURL is enabled on server
+- Contact Richmo support
+
+PROBLEM: Page shows errors
+SOLUTION:
+- Check all files are uploaded
+- Verify database connection
+- Check PHP version (need 7.4+)
+- Check error_log for details
+
+PROBLEM: Can't delete customer
+SOLUTION:
+- Customers with appointments cannot be deleted
+- Delete appointments first, then customer
+
+
+📊 DAILY WORKFLOW:
+═══════════════════════════════════════════════════════════
+
+MORNING:
+1. Login to system
+2. Check Dashboard for today's appointments
+3. Review "Today's Schedule"
+
+WHEN CUSTOMER CALLS:
+1. Search customer by mobile number
+2. If new: Add Customer
+3. Book Appointment
+4. System sends SMS confirmation
+
+WHEN CUSTOMER ARRIVES:
+1. Go to Appointments → Today's date
+2. Update status to "Confirmed"
+3. After service: Update status to "Completed"
+4. Add Treatment Details
+
+BEFORE CUSTOMER LEAVES:
+1. Create Invoice
+2. Select services provided
+3. Enter payment received
+4. Print invoice
+
+END OF DAY:
+1. Go to Reports
+2. Select "Today"
+3. Review daily schedule
+4. Check revenue collected
+5. Print daily report
+
+
+💾 BACKUP INSTRUCTIONS:
+═══════════════════════════════════════════════════════════
+
+DAILY BACKUP:
+1. Login to phpMyAdmin
+2. Select ragamaguru_appointments database
+3. Click "Export"
+4. Choose "Quick" method
+5. Click "Go"
+6. Save SQL file with date (e.g., backup_2024_01_15.sql)
+
+WEEKLY BACKUP:
+- Backup all PHP files
+- Backup database
+- Store in secure location
+
+
+🔐 SECURITY TIPS:
+═══════════════════════════════════════════════════════════
+
+✓ Change default admin password immediately
+✓ Use HTTPS (SSL certificate) for your website
+✓ Regular database backups
+✓ Keep SMS API key confidential
+✓ Don't share login credentials
+✓ Update PHP to latest version
+
+
+📞 SUPPORT INFORMATION:
+═══════════════════════════════════════════════════════════
+
+For technical support, contact your developer.
+
+SYSTEM INFO:
+- PHP Version Required: 7.4+
+- MySQL Version Required: 5.7+
+- cURL: Required for SMS
+- Recommended: Apache/Nginx web server
+
+
+🎉 YOU'RE ALL SET!
+═══════════════════════════════════════════════════════════
+
+Your Ragamaguru Appointment System is ready to use!
+
+Default Login:
+URL: http://yourwebsite.com/login.php
+Username: admin
+Password: admin123
+
+⚠️ Remember to change the default password!
+
+Happy managing! 🎊
